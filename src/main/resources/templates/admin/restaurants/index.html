@@ -42,6 +42,7 @@
 								<tr class="text-center">
 									<th scope="col">ID</th>
 									<th scope="col">店舗名</th>
+									<th scope="col">カテゴリ</th>
 									<th scope="col">説明</th>
 									<th scope="col">住所</th>
 									<th scope="col"></th>
@@ -52,6 +53,7 @@
 								<tr th:each="restaurant : ${restaurantPage}">
 									<td th:text="${restaurant.getId()}"></td>
 									<td th:text="${restaurant.getName()}"></td>
+									<td th:text="${restaurant.getCategory.getName()}"></td>
 									<td th:text="${restaurant.getDescription()}"></td>
 									<td th:text="${restaurant.getAddress()}"></td>
 									<td><a th:href="@{/admin/restaurants/__${restaurant.getId()}__}">詳細</a></td>

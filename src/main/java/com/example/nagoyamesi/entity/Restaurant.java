@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -58,5 +60,11 @@ public class Restaurant {
 
     @Column(name = "updated_at", insertable = false, updatable = false)
     private Timestamp updatedAt; // レコード更新日時
+    
+    @ManyToOne
+	@JoinColumn(name = "category_id", insertable=false, updatable=false)
+	private Category category; //カテゴリ
+	
+	
 
 }

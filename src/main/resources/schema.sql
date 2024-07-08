@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS restaurants (
 );
 
 --カテゴリーテーブル--
-CREATE TABLE IF NOT EXISTS categories (
+CREATE TABLE IF NOT EXISTS categorys (
      id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- カテゴリーid
      name VARCHAR(50) NOT NULL, --カテゴリー名
      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, --カテゴリー作成日

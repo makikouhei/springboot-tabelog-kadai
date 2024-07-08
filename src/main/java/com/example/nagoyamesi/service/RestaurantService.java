@@ -47,7 +47,8 @@ public class RestaurantService {
 		restaurant.setPostalCode(restaurantRegisterForm.getPostalCode()); //郵便番号
 		restaurant.setAddress(restaurantRegisterForm.getAddress()); //住所
 		restaurant.setPhoneNumber(restaurantRegisterForm.getPhoneNumber()); //電話番号
-		
+		restaurant.setCategory(restaurantRegisterForm.getCategory()); //カテゴリ
+
 		restaurantRepository.save(restaurant);
 
 	}
@@ -75,6 +76,7 @@ public class RestaurantService {
 		restaurant.setPostalCode(restaurantEditForm.getPostalCode()); //郵便番号
 		restaurant.setAddress(restaurantEditForm.getAddress()); //住所
 		restaurant.setPhoneNumber(restaurantEditForm.getPhoneNumber()); //電話番号
+		restaurant.setCategory(restaurantEditForm.getCategory()); //カテゴリ
 		
 		restaurantRepository.save(restaurant);
 	}

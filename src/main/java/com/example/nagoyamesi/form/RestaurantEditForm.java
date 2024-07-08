@@ -2,6 +2,10 @@ package com.example.nagoyamesi.form;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.nagoyamesi.entity.Category;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +22,11 @@ public class RestaurantEditForm {
     private String name;
 
     private MultipartFile imageFile;
+    
+    @NotNull(message = "カテゴリを選択してください。")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @NotBlank(message = "営業開始時間を入力してください。")
     private String openingTime;

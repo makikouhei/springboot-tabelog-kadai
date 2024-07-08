@@ -64,7 +64,9 @@ public class AdminRestaurantController {
     //店舗登録
     @GetMapping("/register")
     public String register(Model model) {
+    	
     	model.addAttribute("restaurantRegisterForm", new RestaurantRegisterForm());
+    	
     	return "admin/restaurants/register";
     }  
     //店舗登録
@@ -84,7 +86,20 @@ public class AdminRestaurantController {
 	public String edit(@PathVariable( "restaurantId") Integer restaurantId, Model model) {
 		Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
 		String imageName = restaurant.getImageName();
-		RestaurantEditForm restaurantEditForm = new RestaurantEditForm(restaurant.getId(), restaurant.getName(), null, restaurant.getOpeningTime(), restaurant.getClosingTime(), restaurant.getRegularHoliday() ,  restaurant.getLowestPrice(), restaurant.getHighestPrice() , restaurant.getDescription(),restaurant.getPostalCode(), restaurant.getAddress(),  restaurant.getPhoneNumber());
+		RestaurantEditForm restaurantEditForm = new RestaurantEditForm(
+													restaurant.getId(),
+													restaurant.getName(),
+													null,
+													restaurant.getOpeningTime(),
+													restaurant.getClosingTime(),
+													restaurant.getRegularHoliday(),
+													restaurant.getLowestPrice(),
+													restaurant.getHighestPrice(),
+													restaurant.getDescription(),
+													restaurant.getPostalCode(),
+													restaurant.getAddress(),
+													restaurant.getPhoneNumber(),
+													restaurant.getCategory());
 		
 		model.addAttribute("imageName", imageName);
 		model.addAttribute("restaurantEditForm", restaurantEditForm);
@@ -104,7 +119,7 @@ public class AdminRestaurantController {
 		
 		return "redirect:/admin/restaurants";
 	}
-    
+    //削除
     @PostMapping("/{restaurantId}/delete")
 	public String delete(@PathVariable("restaurantId") Integer restaurantId, RedirectAttributes redirectAttributes) {
 		restaurantRepository.deleteById(restaurantId);

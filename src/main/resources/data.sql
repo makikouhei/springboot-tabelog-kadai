@@ -1,30 +1,36 @@
 -- restaurantsテーブル
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 1, 'レストランA', 'restaurant1.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '東京都渋谷区神南'     , '030-1234-5678', '毎週火曜日',1);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 2, 'レストランB', 'restaurant2.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '大阪府大阪市北区梅田'  , '060-2345-6789', '毎週水曜日',2);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 3, 'レストランC', 'restaurant3.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '福岡県福岡市中央区天神', '092-3456-7890', '年中無休',3);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 4, 'レストランD', 'restaurant4.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '東京都渋谷区神南'     , '030-1234-5678', '毎週火曜日',4);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 5, 'レストランE', 'restaurant5.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '大阪府大阪市北区梅田'  , '060-2345-6789', '毎週水曜日',5);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 6, 'レストランF', 'restaurant6.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '福岡県福岡市中央区天神', '092-3456-7890', '年中無休',6);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 7, 'レストランG', 'restaurant7.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '東京都渋谷区神南'     , '030-1234-5678', '毎週火曜日',7);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 8, 'レストランH', 'restaurant8.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '大阪府大阪市北区梅田'  , '060-2345-6789', '毎週水曜日',8);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 9, 'レストランI', 'restaurant9.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '福岡県福岡市中央区天神', '092-3456-7890', '年中無休',9);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES (10, 'レストランJ', 'restaurant10.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '東京都渋谷区神南'     , '030-1234-5678', '毎週火曜日',10);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES (11, 'レストランK', 'restaurant11.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '大阪府大阪市北区梅田'  , '060-2345-6789', '毎週水曜日',11);
-INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES (12, 'レストランL', 'restaurant12.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '福岡県福岡市中央区天神', '092-3456-7890', '年中無休',12);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 1, 'レストランA', 'restaurant1.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '愛知県渋谷区神南'     , '030-1234-5678', '毎週火曜日',1);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 2, 'レストランB', 'restaurant2.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '愛知県北区梅田'  , '060-2345-6789', '毎週水曜日',13);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 3, 'レストランC', 'restaurant3.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '愛知県中央区天神', '092-3456-7890', '年中無休',1);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 4, 'レストランD', 'restaurant4.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '愛知件渋谷区神南'     , '030-1234-5678', '毎週火曜日',6);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 5, 'レストランE', 'restaurant5.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '愛知県北区梅田'  , '060-2345-6789', '毎週水曜日',4);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 6, 'レストランF', 'restaurant6.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '愛知県中央区天神', '092-3456-7890', '年中無休',5);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 7, 'レストランG', 'restaurant7.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '愛知県渋谷区神南'     , '030-1234-5678', '毎週火曜日',17);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 8, 'レストランH', 'restaurant8.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '愛知県区梅田'  , '060-2345-6789', '毎週水曜日',4);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES ( 9, 'レストランI', 'restaurant9.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '愛知県中央区天神', '092-3456-7890', '年中無休',14);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES (10, 'レストランJ', 'restaurant10.jpg', '美味しい料理を提供しています。'        , '10:00:00', '22:00:00', 1000, 3000, '123-4567', '愛知県渋谷区神南'     , '030-1234-5678', '毎週火曜日',16);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES (11, 'レストランK', 'restaurant11.jpg', '地元の食材を使用した料理が自慢です。'   , '11:00:00', '20:00:00', 1500, 5000, '456-7890', '愛知県北区梅田'  , '060-2345-6789', '毎週水曜日',8);
+INSERT IGNORE INTO restaurants (id, name, image_name, description, opening_time, closing_time, lowest_price, highest_price, postal_code, address, phone_number, regular_holiday, category_id) VALUES (12, 'レストランL', 'restaurant12.jpg', 'アットホームな雰囲気でお待ちしています。', '09:00:00', '18:00:00', 800 , 2500, '567-8901', '愛知県中央区天神', '092-3456-7890', '年中無休',12);
 
 -- categoriesテーブル
-INSERT IGNORE INTO categories (id, name) VALUES (1, '居酒屋');
-INSERT IGNORE INTO categories (id, name) VALUES (2, '和食');
-INSERT IGNORE INTO categories (id, name) VALUES (3, '洋食');
-INSERT IGNORE INTO categories (id, name) VALUES (4, 'フランス料理');
-INSERT IGNORE INTO categories (id, name) VALUES (5, '中華料理');
-INSERT IGNORE INTO categories (id, name) VALUES (6, '寿司');
-INSERT IGNORE INTO categories (id, name) VALUES (7, '海鮮');
-INSERT IGNORE INTO categories (id, name) VALUES (8, 'ラーメン');
-INSERT IGNORE INTO categories (id, name) VALUES (9, '韓国料理');
-INSERT IGNORE INTO categories (id, name) VALUES (10, '焼肉');
-INSERT IGNORE INTO categories (id, name) VALUES (11, '鍋');
-INSERT IGNORE INTO categories (id, name) VALUES (12, 'パスタ');
+INSERT IGNORE INTO categorys (id, name) VALUES (1, '居酒屋');
+INSERT IGNORE INTO categorys (id, name) VALUES (2, '和食');
+INSERT IGNORE INTO categorys (id, name) VALUES (3, '洋食');
+INSERT IGNORE INTO categorys (id, name) VALUES (4, 'ラーメン');
+INSERT IGNORE INTO categorys (id, name) VALUES (5, '海鮮');
+INSERT IGNORE INTO categorys (id, name) VALUES (6, '寿司');
+INSERT IGNORE INTO categorys (id, name) VALUES (7, '焼肉');
+INSERT IGNORE INTO categorys (id, name) VALUES (8, 'パスタ');
+INSERT IGNORE INTO categorys (id, name) VALUES (9, '鍋料理');
+INSERT IGNORE INTO categorys (id, name) VALUES (10, '鉄板焼き');
+INSERT IGNORE INTO categorys (id, name) VALUES (11, 'うどん');
+INSERT IGNORE INTO categorys (id, name) VALUES (12, 'そば');
+INSERT IGNORE INTO categorys (id, name) VALUES (13, 'カレー');
+INSERT IGNORE INTO categorys (id, name) VALUES (14, 'パン');
+INSERT IGNORE INTO categorys (id, name) VALUES (15, 'ハンバーガー');
+INSERT IGNORE INTO categorys (id, name) VALUES (16, 'カフェ');
+INSERT IGNORE INTO categorys (id, name) VALUES (17, 'スイーツ');
+INSERT IGNORE INTO categorys (id, name) VALUES (18, '名古屋名物');
 
 -- rolesテーブル
 INSERT IGNORE INTO roles (id, name) VALUES (1, 'ROLE_GENERAL');

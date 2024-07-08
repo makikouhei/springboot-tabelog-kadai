@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.nagoyamesi.entity.Role;
 import com.example.nagoyamesi.entity.User;
 import com.example.nagoyamesi.form.SignupForm;
+import com.example.nagoyamesi.form.UserEditForm;
 import com.example.nagoyamesi.repository.RoleRepository;
 import com.example.nagoyamesi.repository.UserRepository;
 
@@ -35,9 +36,23 @@ public class UserService {
          user.setEmail(signupForm.getEmail());
          user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
          user.setRole(role);
-         user.setEnabled(true);        
+         user.setEnabled(false);        
          
          return userRepository.save(user);
+     }  
+     
+     @Transactional
+     public void update(UserEditForm userEditForm) {
+         User user = userRepository.getReferenceById(userEditForm.getId());
+         
+         user.setName(userEditForm.getName());
+         user.setFurigana(userEditForm.getFurigana());
+         user.setPostalCode(userEditForm.getPostalCode());
+         user.setAddress(userEditForm.getAddress());
+         user.setPhoneNumber(userEditForm.getPhoneNumber());
+         user.setEmail(userEditForm.getEmail());      
+         
+         userRepository.save(user);
      }    
      
      // メールアドレスが登録済みかどうかをチェックする
@@ -49,6 +64,18 @@ public class UserService {
      // パスワードとパスワード（確認用）の入力値が一致するかどうかをチェックする
      public boolean isSamePassword(String password, String passwordConfirmation) {
          return password.equals(passwordConfirmation);
-     }     
+     }    
+     // ユーザーを有効にする
+     @Transactional
+     public void enableUser(User user) {
+         user.setEnabled(true); 
+         userRepository.save(user);
+     }    
+     
+  // メールアドレスが変更されたかどうかをチェックする
+     public boolean isEmailChanged(UserEditForm userEditForm) {
+         User currentUser = userRepository.getReferenceById(userEditForm.getId());
+         return !userEditForm.getEmail().equals(currentUser.getEmail());      
+     }  
 
 }
