@@ -50,3 +50,15 @@ INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (10, '侍 祐子', 'サムライ ユウコ', '601-0761', '京都府南丹市美山町高野X-XX-XX', '090-1234-5678', 'yuko.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (11, '侍 秋美', 'サムライ アキミ', '606-8235', '京都府京都市左京区田中西春菜町X-XX-XX', '090-1234-5678', 'akimi.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (12, '侍 信平', 'サムライ シンペイ', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'shinpei.samurai@example.com', 'password', 1, false);
+
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (1, 1, 1, 4, 'うまい');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (2, 2, 1, 5, '素晴らしいサービスと設備が整っています。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (3, 3, 1, 3, '周囲がうるさいです。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (4, 4, 1, 4, '居心地が良くてスタッフもフレンドリーです。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (5, 5, 1, 2, '清潔さとサービスにがっかりしました。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (6, 6, 1, 5, '家族旅行に最適です。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (7, 7, 1, 4, '素晴らしいです。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (8, 8, 1, 3, '全体的には普通でした。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (9, 9, 1, 5, '強くお勧めします。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (10, 10, 1, 2, '問題があるためお勧めしません。');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (11, 11, 1, 4, '快適です。');

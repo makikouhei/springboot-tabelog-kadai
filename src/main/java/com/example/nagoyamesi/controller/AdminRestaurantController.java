@@ -90,6 +90,7 @@ public class AdminRestaurantController {
 													restaurant.getId(),
 													restaurant.getName(),
 													null,
+													restaurant.getCategory(),
 													restaurant.getOpeningTime(),
 													restaurant.getClosingTime(),
 													restaurant.getRegularHoliday(),
@@ -98,9 +99,7 @@ public class AdminRestaurantController {
 													restaurant.getDescription(),
 													restaurant.getPostalCode(),
 													restaurant.getAddress(),
-													restaurant.getPhoneNumber(),
-													restaurant.getCategory());
-		
+													restaurant.getPhoneNumber());		
 		model.addAttribute("imageName", imageName);
 		model.addAttribute("restaurantEditForm", restaurantEditForm);
 		
