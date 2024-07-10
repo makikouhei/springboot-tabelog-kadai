@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS verification_tokens (
      FOREIGN KEY (user_id) REFERENCES users (id) 
  );
  -- レビュー --
- CREATE TABLE IF NOT EXISTS reviews (
+CREATE TABLE IF NOT EXISTS reviews (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     restaurant_id INT NOT NULL,

@@ -1,5 +1,8 @@
 package com.example.nagoyamesi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -16,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.nagoyamesi.entity.Category;
 import com.example.nagoyamesi.entity.Restaurant;
 import com.example.nagoyamesi.form.RestaurantEditForm;
 import com.example.nagoyamesi.form.RestaurantRegisterForm;
+import com.example.nagoyamesi.repository.CategoryRepository;
 import com.example.nagoyamesi.repository.RestaurantRepository;
 import com.example.nagoyamesi.service.RestaurantService;
 
@@ -29,10 +34,12 @@ import com.example.nagoyamesi.service.RestaurantService;
 public class AdminRestaurantController {
 	private final RestaurantRepository  restaurantRepository;
 	private final RestaurantService restaurantService;
+	private final CategoryRepository categoryRepository;
 	
-	public AdminRestaurantController(RestaurantRepository restaurantRepository, RestaurantService restaurantService) {
+	public AdminRestaurantController(RestaurantRepository restaurantRepository, RestaurantService restaurantService, CategoryRepository categoryRepository) {
         this.restaurantRepository = restaurantRepository; 
         this.restaurantService = restaurantService;
+        this.categoryRepository = categoryRepository;
       
     }
 	//管理者
@@ -64,9 +71,16 @@ public class AdminRestaurantController {
     //店舗登録
     @GetMapping("/register")
     public String register(Model model) {
+    	List<Category> categors = categoryRepository.findAll();
+    	List<String> times = new ArrayList<>();
+    	for (int hour = 0; hour < 24; hour++) {
+    	    times.add(String.format("%02d:00", hour));
+    	    times.add(String.format("%02d:30", hour));
+    	}
     	
+    	model.addAttribute("times", times);
     	model.addAttribute("restaurantRegisterForm", new RestaurantRegisterForm());
-    	
+    	model.addAttribute("categors", categors);
     	return "admin/restaurants/register";
     }  
     //店舗登録
@@ -99,7 +113,16 @@ public class AdminRestaurantController {
 													restaurant.getDescription(),
 													restaurant.getPostalCode(),
 													restaurant.getAddress(),
-													restaurant.getPhoneNumber());		
+													restaurant.getPhoneNumber());	
+		List<Category> categors = categoryRepository.findAll();
+		List<String> times = new ArrayList<>();
+    	for (int hour = 0; hour < 24; hour++) {
+    	    times.add(String.format("%02d:00", hour));
+    	    times.add(String.format("%02d:30", hour));
+    	}
+    	
+    	model.addAttribute("categors", categors);
+    	model.addAttribute("times", times);
 		model.addAttribute("imageName", imageName);
 		model.addAttribute("restaurantEditForm", restaurantEditForm);
 		

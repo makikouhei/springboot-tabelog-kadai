@@ -123,6 +123,72 @@
 								
 							</div>
 						</div>
+						<!-- レビュー -->
+							<div class="container"> 
+								<h2 class="mb-4 text-center" >レビュー</h2>
+								  
+								<div class="mb-4">	
+									<p class="text-center" th:if="${ReviewCount > 0}" th:text="${ReviewCount + '件のレビューがあります。'}"></p>
+									<p class="text-center" th:if="${ReviewCount == 0}">まだレビューがありません。</p>	
+								</div>	
+								<div class="row row-cols-1 row-cols-md-2 g-4 mb-4">	                                                      
+									<div th:each="review : ${reviewList}"> 
+										<div class ="col"> 
+											<div class ="card">
+												<div class ="card-body">
+													<div class="d-flex justify-content-between">
+														<h5 class="card-title" th:text="${review.getUser().getName}"></h5> 
+														<span sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.getUser().getId()}">
+															<a th:href="@{/restaurants/__${restaurant.getId()}__/review/__${review.getId()}__/edit}">編集</a>
+															<a href="#" class="nagoyamesi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
+															<!-- 削除用モーダル -->
+															<!-- 削除用モーダル -->
+					                                        <div class="modal fade" th:id="${'deleteReviewModal' + review.getId()}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.getId()}">
+					                                             <div class="modal-dialog">
+					                                                 <div class="modal-content">
+					                                                     <div class="modal-header">
+					                                                         <h5 class="modal-title" th:id="${'deleteReviewModalLabel' + review.getId()}" th:text="${restaurant.getName() + 'を削除してもよろしいですか？'}"></h5>
+					                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+					                                                     </div>
+					                                                     <div class="modal-footer">
+					                                                         <form method="post"th:action="@{/houses/__${restaurant.getId()}__/review/__${review.getId()}__/delete}">
+					                                                             <button type="submit" class="btn nagoyamesi-btn-danger text-white shadow-sm">削除</button>
+					 	                                                        </form>
+					                                                     </div>
+					                                                 </div>
+					                                             </div>
+					                                         </div>       
+				                                       </span>
+				                                    </div>                                                       
+													<p class="card-text mb-1">                                         
+														<span class="nagoyamesi-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star  <= review.getRating()} ? '&#9733;' : '&#9734;'"></span>
+													</p>
+													
+													<p class="card-text">
+														<samuli th:text="${#dates.format(review.getCreatedAt(), 'yyyy年MM月dd日')}"></samuli>
+													</p>
+													
+													<div class="card-text">
+														<sapn th:text="${review.getComment()}"></sapn> 
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div sec:authorize=="hasRole('GENERAL')" class="text-center mb-4" th:if="${ReviewCount > 4}">
+									<p>全てのレビューを閲覧、レビュー投稿するには<a th:href="@{/}">有料会員登録</a>が必要です。</p>
+								</div> 
+								<div sec:authorize=="hasRole('PREMIUM')"  class="row justify-content-center mb-4">
+									<div class="col-lg-4">
+										<a th:href="@{/restaurants/__${restaurant.getId()}__/review/register}" class="btn text-white shadow-sm w-100 nagoyamesi-btn">レビューを投稿する</a>
+									</div>
+								</div>
+								<div sec:authorize=="hasRole('PREMIUM')" class="text-center mb-4" th:if="${ReviewCount > 4}">
+										<a th:href="@{/restaurants/__${restaurant.getId()}__/reviews}">すべてのレビューを見る</a>
+								</div>   
+							</div>
 						
 					</div>
 				</div>

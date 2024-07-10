@@ -64,8 +64,24 @@
                                      </a>
                                      <form class="d-none" id="logout-form" th:action="@{/logout}" method="post"></form>                                     
                                  </div>
-                             </li>                       
-                                 
+                             </li> 
+                             <!-- 有料会員であれば表示 -->                      
+                             <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_PREMIUM')">
+                                 <a id="navbarDropdownGeneral" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     <span sec:authentication="principal.user.name"></span>
+                                 </a>
+         
+                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownGeneral">
+									 <a class="dropdown-item nagoyamesi-dropdown-item" th:href="@{/user}">会員情報</a>  
+                                     
+                                     <div class="dropdown-divider"></div>
+                                                                                                       
+                                     <a class="dropdown-item nagoyamesi-dropdown-item" th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                         ログアウト
+                                     </a>
+                                     <form class="d-none" id="logout-form" th:action="@{/logout}" method="post"></form>                                     
+                                 </div>
+                             </li>
                              <!-- 管理者であれば表示する -->    
                              <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                                  <a id="navbarDropdownAdmin" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

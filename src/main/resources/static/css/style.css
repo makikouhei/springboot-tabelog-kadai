@@ -128,6 +128,16 @@ html {
      max-width: 300px;
  }
  
+ .nagoyamesi-star {
+     color: #ffa500;
+ } 
+ 
+ .nagoyamesi-star:focus {
+     color: #ffa500;
+ }
+
+
+ 
  @media screen and (min-width: 1400px) {
    .nagoyamesi-container {
      max-width: 1200px;

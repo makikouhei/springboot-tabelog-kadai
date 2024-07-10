@@ -60,8 +60,8 @@
 									<div class="col-md-8">
 										<div th:if="${#fields.hasErrors('category')}" class="text-danger small mb-2" th:errors="*{category}"></div>
 										<select class="form-select category" th:field="*{category}">
-										
-                                             
+										<option value="">選択してください</option>
+										<option th:each="category : ${categors}" th:value="${category.id}" th:text="${category.name}">Category</option>
                                          </select>
 									</div>
 								</div>
@@ -74,6 +74,7 @@
 								        <div th:if="${#fields.hasErrors('openingTime')}" class="text-danger small mb-2" th:errors="*{openingTime}"></div>
 								        <select id="openingTimeSelect" class="form-select openingtime" th:field="*{openingTime}">
 								            <option value="">選択してください</option>
+								            <option th:each="time : ${times}" th:value="${time}" th:text="${time}"></option>
 								        </select>
 								    </div>
 								</div>
@@ -86,6 +87,7 @@
 								        <div th:if="${#fields.hasErrors('closingTime')}" class="text-danger small mb-2" th:errors="*{closingTime}"></div>
 								        <select id="closingTimeSelect" class="form-select closingtime" th:field="*{closingTime}">
 								            <option value="">選択してください</option>
+								            <option th:each="time : ${times}" th:value="${time}" th:text="${time}"></option>
 								        </select>
 								    </div>
 								</div>
@@ -97,18 +99,7 @@
 								    </div>
 								    <div class="col-md-8">
 								        <div th:if="${#fields.hasErrors('regularHoliday')}" class="text-danger small mb-2" th:errors="*{regularHoliday}"></div>
-								        <select class="form-select" th:field="*{regularHoliday}">
-								            <option value="">選択してください</option>
-								            <option value="毎週日曜日">毎週日曜日</option>
-								            <option value="毎週月曜日">毎週月曜日</option>
-								            <option value="毎週火曜日">毎週火曜日</option>
-								            <option value="毎週水曜日">毎週水曜日</option>
-								            <option value="毎週木曜日">毎週木曜日</option>
-								            <option value="毎週金曜日">毎週金曜日</option>
-								            <option value="毎週土曜日">毎週土曜日</option>
-								            <option value="不定休">不定休</option>
-								            <option value="年中無休">年中無休</option>
-								        </select>
+								        <input type="text" class="form-control" th:field="*{regularHoliday}" placeholder="毎週日曜">
 								    </div>
 								</div>
 	
@@ -185,6 +176,5 @@
 		
 		<div th:replace="~{fragment :: scripts}"></div>
 		<script th:src="@{/js/preview.js}"></script>
-		<script th:src="@{/js/TimeFormatter.js}"></script>     
 	</body>
 </html>

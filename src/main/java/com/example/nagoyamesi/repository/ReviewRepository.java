@@ -17,5 +17,5 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	public Review findByRestaurantAndUser(Restaurant restaurant, User user);
 	
 	// メソッドの追加: ユーザーが特定の店舗に対してレビューを投稿しているかどうかを確認する
-    boolean existsByUserAndrestaurant(User user, Restaurant restaurant);
+    boolean existsByUserAndRestaurant(User user, Restaurant restaurant);
 }
