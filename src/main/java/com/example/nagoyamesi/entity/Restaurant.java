@@ -65,6 +65,5 @@ public class Restaurant {
 	@JoinColumn(name = "category_id", insertable=false, updatable=false)
 	private Category category; //カテゴリ
 	
-	
 
 }

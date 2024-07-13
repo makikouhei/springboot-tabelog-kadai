@@ -38,9 +38,9 @@ INSERT IGNORE INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT IGNORE INTO roles (id, name) VALUES (3, 'ROLE_PREMIUM');
 
 --usersテーブル
-INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (1, '山田 太郎', 'ヤマダ タロウ', '101-0022', '東京都千代田区神田練塀町300番地', '090-1234-5678', 'taro.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (1, '山田 太郎', 'ヤマダ タロウ', '101-0022', '東京都千代田区神田練塀町300番地', '090-1234-5678', 'taro.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 3, true);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (2, '山田 花子', 'ヤマダ ハナコ', '101-0022', '東京都千代田区神田練塀町300番地', '090-1234-5678', 'hanako.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 2, true);
-INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (3, '山田 義勝', 'ヤマダ ヨシカツ', '638-0644', '奈良県五條市西吉野町湯川X-XX-XX', '090-1234-5678', 'yoshikatsu.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 3, true);
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (3, '山田 義勝', 'ヤマダ ヨシカツ', '638-0644', '奈良県五條市西吉野町湯川X-XX-XX', '090-1234-5678', 'yoshikatsu.samurai@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (4, '山田 幸美', 'ヤマダ サチミ', '342-0006', '埼玉県吉川市南広島X-XX-XX', '090-1234-5678', 'sachimi.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (5, '山田 雅', 'ヤマダ ミヤビ', '527-0209', '滋賀県東近江市佐目町X-XX-XX', '090-1234-5678', 'miyabi.samurai@example.com', 'password', 1, false);
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (6, '山田 正保', 'ヤマダ マサヤス', '989-1203', '宮城県柴田郡大河原町旭町X-XX-XX', '090-1234-5678', 'masayasu.samurai@example.com', 'password', 1, false);
@@ -52,7 +52,7 @@ INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) VALUES (12, '山田 信平', 'ヤマダ シンペイ', '673-1324', '兵庫県加東市新定X-XX-XX', '090-1234-5678', 'shinpei.samurai@example.com', 'password', 1, false);
 
 -- reviewテーブル 
-INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (1, 12, 1, 4, 'うまい');
+INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (1, 1, 1, 4, 'うまい');
 INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (2, 2, 1, 5, '素晴らしいサービスと設備が整っています。');
 INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (3, 3, 1, 3, '周囲がうるさいです。');
 INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (4, 4, 1, 4, '居心地が良くてスタッフもフレンドリーです。');
@@ -63,3 +63,18 @@ INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES 
 INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (9, 9, 1, 5, '強くお勧めします。');
 INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (10, 10, 1, 2, '問題があるためお勧めしません。');
 INSERT IGNORE INTO reviews (id, user_id, restaurant_id, rating, comment) VALUES (11, 11, 1, 4, '快適です。');
+
+-- reservations --
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (1, 1, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (2, 2, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (3, 3, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (4, 4, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (5, 5, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (6, 6, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (7, 7, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (8, 8, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (9, 9, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (10, 10, 1, '2024-08-10', '18:00:00', 2);
+INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (11, 11, 1, '2024-08-11', '18:00:00', 2);
+
+

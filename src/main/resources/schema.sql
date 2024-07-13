@@ -47,24 +47,40 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- レコード更新日時
     FOREIGN KEY (role_id) REFERENCES roles (id) -- role_id列に対する外部キー制約、rolesテーブルのid列を参照
 );
+
 -- 認証トークンテーブル --
 CREATE TABLE IF NOT EXISTS verification_tokens (
-     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-     user_id INT NOT NULL UNIQUE,
-     token VARCHAR(255) NOT NULL,        
-     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-     FOREIGN KEY (user_id) REFERENCES users (id) 
- );
- -- レビュー --
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- トークンID 
+    user_id INT NOT NULL UNIQUE,                -- ユーザーID 
+    token VARCHAR(255) NOT NULL,                -- トークン文字列
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 作成日時
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 更新日時
+    FOREIGN KEY (user_id) REFERENCES users (id)  -- usersテーブルのIDを参照する外部キー制約
+); 
+
+-- レビュー --
 CREATE TABLE IF NOT EXISTS reviews (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    restaurant_id INT NOT NULL,
-    rating INT NOT NULL,
-    comment TEXT,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id)
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- レビューID 
+    user_id INT NOT NULL,                       -- レビューを行ったユーザーのID
+    restaurant_id INT NOT NULL,                 -- レビュー対象のレストランのID
+    rating INT NOT NULL,                        -- レビューの評価 (1から5の整数値)
+    comment TEXT,                               -- コメント 
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 作成日時
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 更新日時
+    FOREIGN KEY (user_id) REFERENCES users (id),          -- usersテーブルのIDを参照する外部キー制約
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id)  -- restaurantsテーブルのIDを参照する外部キー制約
+);
+
+-- 予約テーブル --
+CREATE TABLE IF NOT EXISTS reservations (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- 予約ID、
+    restaurant_id INT NOT NULL,  -- 店舗ID
+    user_id INT NOT NULL,  -- ユーザーID
+    reservation_date DATE NOT NULL,  -- 予約日
+    reservation_time TIME NOT NULL,  -- 予約時間
+    number_of_people INT NOT NULL,  -- 予約人数
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 作成日時
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 更新日時
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id),  -- restaurantsテーブルのidカラムと外部キー制約
+    FOREIGN KEY (user_id) REFERENCES users (id)   -- usersテーブルのidカラムと外部キー制約
 );

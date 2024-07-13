@@ -136,6 +136,10 @@ html {
      color: #ffa500;
  }
 
+.nav-item {
+	list-style: none;
+	
+}
 
  
  @media screen and (min-width: 1400px) {

@@ -50,4 +50,15 @@ public class ReviewService {
         Review review = reviewRepository.findByRestaurantAndUser(restaurant, user);
         return review != null;
 	}
+	
+	@Transactional(readOnly = true)
+    public double getAverageRating() {
+        return reviewRepository.getAverageRating() != null ? reviewRepository.getAverageRating() : 0.0;
+    }
+
+    @Transactional(readOnly = true)
+    public long getReviewCount() {
+        return reviewRepository.count();
+    }
+
 }

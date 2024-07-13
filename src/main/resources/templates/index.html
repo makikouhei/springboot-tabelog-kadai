@@ -28,7 +28,7 @@
                   <div class="d-flex justify-content-center">                                            
                          <form method="get" th:action="@{/restaurants}" class="mb-5 nagoyamesi-search-form">
                              <div class="input-group">
-                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名">
+                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名・カテゴリ名">
                                  <button type="submit" class="btn text-white shadow-sm nagoyamesi-btn">検索</button> 
                              </div>               
                          </form>                        
@@ -45,12 +45,18 @@
                                          <h3 class="card-title" th:text="${restaurant.getName()}"></h3>
                                          <h4 th:text="${restaurant.getCategory.getName()}"></h4>
                                          
+                                         <p class="card-text">
+                                            <span th:if="${averageRating != null}"> 
+										        <span th:text="${#numbers.formatDecimal(averageRating, 1, 1)}">点</span>
+										        (<span th:text="${reviewCount} + '件'"></span>)
+										    </span>
+										    <span th:if="${averageRating == null}">レビューはまだありません</span>
+                                         </p>                                    
+                                         
                                          <p class="card-text mb-1">
                                              <small class="text-muted" th:text="${restaurant.getAddress()}"></small>                                            
                                          </p>
-                                         <p class="card-text">
-                                             <span th:text="${restaurant.getDescription()}"></span>                                            
-                                         </p>                                    
+                                            
                                      </div>
                                  </div>    
                              </a>            
