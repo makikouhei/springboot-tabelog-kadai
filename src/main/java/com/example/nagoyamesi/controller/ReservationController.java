@@ -68,19 +68,18 @@ public class ReservationController {
 			RedirectAttributes redirectAttributes,
 			Model model) {
     	
-    	Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
     	/*String ReservationDate = reservationInputForm.getFromReservationDate();
         String fromReservationTime = reservationInputForm.getFromReservationTime();
         Integer numberOfPeople = reservationInputForm.getNumberOfPeople();*/
         
         if (bindingResult.hasErrors()) {
-        	model.addAttribute("restaurant", restaurant);
-			model.addAttribute("errorMessage", "予約内容に誤りがあります。");
-			return "restaurants/register";
+        	model.addAttribute("restaurant", restaurantRepository.getReferenceById(restaurantId));
+			model.addAttribute("errorMessage", "予約内容に不備があります。");
+			return "/restaurants/register";
 		}
         redirectAttributes.addFlashAttribute("reservationInputForm", reservationInputForm);
 
-		return "redirect:/restaurants/{restaurantId}/reservations/confirm";
+		return "redirect:/restaurants/" + restaurantId + "/reservations/confirm";
 
     
     }
@@ -101,7 +100,7 @@ public class ReservationController {
 		        reservationInputForm.getReservationTime(),
 		        reservationInputForm.getNumberOfPeople()
 		    );
-
+		
 		model.addAttribute("restaurant", restaurant);
 		model.addAttribute("reservationRegisterForm", reservationRegisterForm);
 
