@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.nagoyamesi.entity.Reservation;
@@ -25,15 +26,19 @@ import com.example.nagoyamesi.form.ReservationRegisterForm;
 import com.example.nagoyamesi.repository.ReservationRepository;
 import com.example.nagoyamesi.repository.RestaurantRepository;
 import com.example.nagoyamesi.security.UserDetailsImpl;
+import com.example.nagoyamesi.service.ReservationService;
 
 @Controller
 public class ReservationController {
 	private final ReservationRepository reservationRepository; 
 	private final RestaurantRepository restaurantRepository;
+	private final ReservationService reservationService;
+
     
-    public ReservationController(ReservationRepository reservationRepository, RestaurantRepository restaurantRepository) {        
+    public ReservationController(ReservationRepository reservationRepository, RestaurantRepository restaurantRepository,ReservationService reservationService) {        
         this.reservationRepository = reservationRepository;
         this.restaurantRepository = restaurantRepository;
+        this.reservationService = reservationService;
     }    
     @GetMapping("/reservations")
     public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable, Model model) {
@@ -75,11 +80,18 @@ public class ReservationController {
         if (bindingResult.hasErrors()) {
         	model.addAttribute("restaurant", restaurantRepository.getReferenceById(restaurantId));
 			model.addAttribute("errorMessage", "予約内容に不備があります。");
-			return "/restaurants/register";
+			List<String> times = new ArrayList<>();
+	    	for (int hour = 0; hour < 24; hour++) {
+	    	    times.add(String.format("%02d:00", hour));
+	    	    times.add(String.format("%02d:30", hour));
+	    	}
+	    	
+	    	model.addAttribute("times", times);
+			return "reservations/register";
 		}
         redirectAttributes.addFlashAttribute("reservationInputForm", reservationInputForm);
 
-		return "redirect:/restaurants/" + restaurantId + "/reservations/confirm";
+		return "redirect:/restaurants/{restaurantId}/reservations/confirm";
 
     
     }
@@ -106,4 +118,11 @@ public class ReservationController {
 
 		return "reservations/confirm";
 	}
+    
+    @PostMapping("/restaurants/{restaurantId}/reservations/create")
+    public String create(@ModelAttribute ReservationRegisterForm reservationRegisterForm) {                
+        reservationService.create(reservationRegisterForm);        
+        
+        return "redirect:/reservations?reserved";
+    }
 }

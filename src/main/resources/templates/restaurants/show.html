@@ -26,6 +26,10 @@
 							</nav>
 							
 							<h1 class="mb-4 text-center" th:text="${restaurant.getName()}"></h1>
+							
+							<div th:if="${successMessage}" class="alert alert-info">
+                                 <span th:text="${successMessage}"></span>
+                             </div>                                                                                  
 														
 							<ul calss="nav nav-tabs mb-3">
 								<li class="nav-item">
@@ -139,9 +143,8 @@
 													<div class="d-flex justify-content-between">
 														<h5 class="card-title" th:text="${review.getUser().getName}"></h5> 
 														<span sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.getUser().getId()}">
-															<a th:href="@{/restaurants/__${restaurant.getId()}__/review/__${review.getId()}__/edit}">編集</a>
+															<a th:href="@{/restaurants/__${restaurant.getId()}__/reviews/__${review.getId()}__/edit}">編集</a>
 															<a href="#" class="nagoyamesi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
-															<!-- 削除用モーダル -->
 															<!-- 削除用モーダル -->
 					                                        <div class="modal fade" th:id="${'deleteReviewModal' + review.getId()}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.getId()}">
 					                                             <div class="modal-dialog">
@@ -151,7 +154,7 @@
 					                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
 					                                                     </div>
 					                                                     <div class="modal-footer">
-					                                                         <form method="post"th:action="@{/houses/__${restaurant.getId()}__/review/__${review.getId()}__/delete}">
+					                                                         <form method="post"th:action="@{/restaurants/__${restaurant.getId()}__/reviews/__${review.getId()}__/delete}">
 					                                                             <button type="submit" class="btn nagoyamesi-btn-danger text-white shadow-sm">削除</button>
 					 	                                                        </form>
 					                                                     </div>
@@ -180,9 +183,9 @@
 								<div sec:authorize=="hasRole('GENERAL')" class="text-center mb-4" th:if="${ReviewCount > 4}">
 									<p>全てのレビューを閲覧、レビュー投稿するには<a th:href="@{/}">有料会員登録</a>が必要です。</p>
 								</div> 
-								<div sec:authorize=="hasRole('PREMIUM')"  class="row justify-content-center mb-4">
+								<div sec:authorize=="hasRole('PREMIUM')" th:if="${hasReview != true}" class="row justify-content-center mb-4">
 									<div class="col-lg-4">
-										<a th:href="@{/restaurants/__${restaurant.getId()}__/review/register}" class="btn text-white shadow-sm w-100 nagoyamesi-btn">レビューを投稿する</a>
+										<a th:href="@{/restaurants/__${restaurant.getId()}__/reviews/register}" class="btn text-white shadow-sm w-100 nagoyamesi-btn">レビューを投稿する</a>
 									</div>
 								</div>
 								<div sec:authorize=="hasRole('PREMIUM')" class="text-center mb-4" th:if="${ReviewCount > 4}">

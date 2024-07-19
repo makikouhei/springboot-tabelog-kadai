@@ -85,9 +85,18 @@ public class AdminRestaurantController {
     }  
     //店舗登録
     @PostMapping("/create")
-	public String create(@ModelAttribute @Validated RestaurantRegisterForm restaurantRegisterForm, BindingResult bindingResult,RedirectAttributes redirectAttributes) {
+	public String create(@ModelAttribute @Validated RestaurantRegisterForm restaurantRegisterForm, BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) {
+    	List<Category> categors = categoryRepository.findAll();
 		if(bindingResult.hasErrors()) {
-			return "admin/restaurants/register";
+			List<String> times = new ArrayList<>();
+	    	for (int hour = 0; hour < 24; hour++) {
+	    	    times.add(String.format("%02d:00", hour));
+	    	    times.add(String.format("%02d:30", hour));
+	    	}
+	    	
+	    	model.addAttribute("categors", categors);
+	    	model.addAttribute("times", times);
+			return "/admin/restaurants/register";
 		}
 
 		restaurantService.create(restaurantRegisterForm);

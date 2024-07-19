@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.nagoyamesi.entity.Restaurant;
 import com.example.nagoyamesi.entity.Review;
 import com.example.nagoyamesi.entity.User;
-import com.example.nagoyamesi.form.RestaurantRegisterForm;
 import com.example.nagoyamesi.form.ReviewEditForm;
 import com.example.nagoyamesi.form.ReviewRegisterForm;
 import com.example.nagoyamesi.repository.RestaurantRepository;
@@ -57,26 +56,28 @@ public class ReviewController {
 	public String register(@PathVariable("restaurantId") Integer restaurantId, Model model) {
 		Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
 
-		model.addAttribute("reviewRegisterForm", new RestaurantRegisterForm());
+		model.addAttribute("reviewRegisterForm", new ReviewRegisterForm());
 		model.addAttribute("restaurant", restaurant);
 
-		return "review/register";
+		return "reviews/register";
 	}
 
 	@PostMapping("/create")
-	public String create(@PathVariable("restaurantId") Integer houseId,
+	public String create(@PathVariable("restaurantId") Integer restaurantId,
 			@ModelAttribute @Validated ReviewRegisterForm reviewRegisterForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes,
-			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
+		Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
 		if (bindingResult.hasErrors()) {
-			return "/review/register";
+			model.addAttribute("restaurant", restaurant);
+			return "/reviews/register";
 		}
 
 		User user = userDetailsImpl.getUser();
 		reviewService.create(user, reviewRegisterForm);
 		redirectAttributes.addFlashAttribute("successMessage", "レビューを登録しました。");
 
-		return "redirect:/restaurants/{houseId}";
+		return "redirect:/restaurants/{restaurantId}";
 	}
 
 	@GetMapping("/{reviewId}/edit")
@@ -91,15 +92,21 @@ public class ReviewController {
 		model.addAttribute("restaurant", restaurant);
 		model.addAttribute("review", review);
 
-		return "/review/edit";
+		return "/reviews/edit";
 	}
 
-	@PostMapping("/{reviewid}/update")
-	public String update(@PathVariable("reviewid") Integer reviewId,
+	@PostMapping("/{reviewId}/update")
+	public String update(@PathVariable("restaurantId") Integer restaurantId,@PathVariable("reviewId") Integer reviewId,
 			@ModelAttribute @Validated ReviewEditForm reviewEditForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
+			Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
+			Review review = reviewRepository.getReferenceById(reviewId);
+
+			
 		if (bindingResult.hasErrors()) {
-			return "/review/edit";
+			model.addAttribute("restaurant", restaurant);
+			model.addAttribute("review", review);
+			return "/reviews/edit";
 		}
 
 		reviewService.update(reviewEditForm);
