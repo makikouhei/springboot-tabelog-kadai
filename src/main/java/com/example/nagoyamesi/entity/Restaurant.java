@@ -62,7 +62,7 @@ public class Restaurant {
     private Timestamp updatedAt; // レコード更新日時
     
     @ManyToOne
-	@JoinColumn(name = "category_id", insertable=false, updatable=false)
+	@JoinColumn(name = "category_id", insertable=false, updatable=false, nullable = false)
 	private Category category; //カテゴリ
 	
 
