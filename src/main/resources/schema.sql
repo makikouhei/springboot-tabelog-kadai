@@ -84,3 +84,15 @@ CREATE TABLE IF NOT EXISTS reservations (
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id),  -- restaurantsテーブルのidカラムと外部キー制約
     FOREIGN KEY (user_id) REFERENCES users (id)   -- usersテーブルのidカラムと外部キー制約
 );
+
+ -- お気に入りテーブル --
+CREATE TABLE IF NOT EXISTS favorites (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- お気に入りID
+    restaurant_id INT NOT NULL, -- 店舗ID
+    user_id INT NOT NULL, -- ユーザーID
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 作成日
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 更新日
+    UNIQUE (restaurant_id, user_id),  
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);

@@ -1,5 +1,8 @@
 package com.example.nagoyamesi.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,13 +55,18 @@ public class ReviewService {
 	}
 	
 	@Transactional(readOnly = true)
-    public double getAverageRating() {
-        return reviewRepository.getAverageRating() != null ? reviewRepository.getAverageRating() : 0.0;
+    public Double getAverageRatingByRestaurant(Restaurant restaurant) {
+        return reviewRepository.getAverageRatingByRestaurant(restaurant);
     }
-
-    @Transactional(readOnly = true)
-    public long getReviewCount() {
-        return reviewRepository.count();
+	
+	@Transactional(readOnly = true)
+    public Long getReviewCountByRestaurant(Restaurant restaurant) {
+        return reviewRepository.countByRestaurant(restaurant);
+    }
+	
+	@Transactional(readOnly = true)
+    public List<Restaurant> getTop6RestaurantsByRating() {
+        return restaurantRepository.findTop6ByOrderByAverageRatingDesc(PageRequest.of(0, 6));
     }
 
 }

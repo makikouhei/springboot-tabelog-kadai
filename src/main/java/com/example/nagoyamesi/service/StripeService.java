@@ -11,9 +11,13 @@ import jakarta.servlet.http.HttpServletRequest;
 public class StripeService {
 	@Value("${stripe.api-key}")
     private String stripeApiKey;
+	
 	public String createStripeSession(HttpServletRequest httpServletRequest) {
 		Stripe.apiKey = stripeApiKey;
         String requestUrl = new String(httpServletRequest.getRequestURL());
+        
+        SessionCreateParams params = SessionCreateParams.builder()
+        		.setMode(SessionCreateParams.Mode.SUBSCRIPTION)
 	}
 
 }

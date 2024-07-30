@@ -77,4 +77,14 @@ INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, r
 INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (10, 10, 1, '2024-08-10', '18:00:00', 2);
 INSERT IGNORE INTO reservations (id, restaurant_id, user_id, reservation_date, reservation_time, number_of_people) VALUES (11, 11, 1, '2024-08-11', '18:00:00', 2);
 
-
+-- favorites --
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (1, 1, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (2, 2, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (3, 3, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (4, 4, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (5, 5, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (6, 6, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (7, 7, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (8, 8, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (9, 9, 1);
+INSERT IGNORE INTO favorites (id, restaurant_id, user_id) VALUES (10, 10, 1);

@@ -98,6 +98,7 @@ public class AdminRestaurantController {
 	    	model.addAttribute("times", times);
 			return "/admin/restaurants/register";
 		}
+		
 
 		restaurantService.create(restaurantRegisterForm);
 		redirectAttributes.addFlashAttribute("successMessage", "店舗を登録しました。");
@@ -140,8 +141,17 @@ public class AdminRestaurantController {
 		}
     //編集登録
     @PostMapping("/{restaurantId}/update")
-	public String update(@ModelAttribute @Validated RestaurantEditForm restaurantEditForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String update(@ModelAttribute @Validated RestaurantEditForm restaurantEditForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+    	List<Category> categors = categoryRepository.findAll();
 		if (bindingResult.hasErrors()) {
+			List<String> times = new ArrayList<>();
+	    	for (int hour = 0; hour < 24; hour++) {
+	    	    times.add(String.format("%02d:00", hour));
+	    	    times.add(String.format("%02d:30", hour));
+	    	}
+	    	
+	    	model.addAttribute("categors", categors);
+	    	model.addAttribute("times", times);
 			return "admin/restaurants/edit";
 		}
 		

@@ -17,13 +17,25 @@
 				<div class="container pt-4 pb-5 nagoyameshi-container">
 					<div class="row justify-content-center">
 						<div class="col-xl-7 col-lg-8 col-md-8">
-							<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-								<ol class="breadcrumb mb-0">
-									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
-									<li class="breadcrumb-item"><a th:href="@{/restaurants}">店舗一覧</a></li>
-									<li class="breadcrumb-item active" aria-current="page">店舗詳細</li>
-								</ol>
-							</nav>
+							<div class="d-flex justify-content-between mb-4">
+								<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+									<ol class="breadcrumb mb-0">
+										<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+										<li class="breadcrumb-item"><a th:href="@{/restaurants}">店舗一覧</a></li>
+										<li class="breadcrumb-item active" aria-current="page">店舗詳細</li>
+									</ol>
+								</nav>
+								
+								<!-- お気に入り機能 -->
+                                 <div th:if="${#authorization.expression('hasRole(''ROLE_PREMIUM'')')}">
+                                     <div th:if="${isFavorite}">
+                                         <a th:href="@{/restaurants/__${restaurantId}__/delete}">&#9829; お気に入り解除</a>
+                                     </div>
+                                     <div th:unless="${isFavorite}">
+                                         <a th:href="@{/restaurants/__${restaurantId}__/create}">&#9825; お気に入り追加</a>
+                                     </div>
+                                 </div>                            
+                             </div>
 							
 							<h1 class="mb-4 text-center" th:text="${restaurant.getName()}"></h1>
 							
@@ -180,7 +192,7 @@
 									</div>
 								</div>
 								
-								<div sec:authorize=="hasRole('GENERAL')" class="text-center mb-4" th:if="${ReviewCount > 4}">
+								<div sec:authorize=="hasRole('GENERAL')" class="text-center mb-4">
 									<p>全てのレビューを閲覧、レビュー投稿するには<a th:href="@{/}">有料会員登録</a>が必要です。</p>
 								</div> 
 								<div sec:authorize=="hasRole('PREMIUM')" th:if="${hasReview != true}" class="row justify-content-center mb-4">

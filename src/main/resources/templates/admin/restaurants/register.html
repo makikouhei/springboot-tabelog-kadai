@@ -60,7 +60,7 @@
 										<div th:if="${#fields.hasErrors('category')}" class="text-danger small mb-2" th:errors="*{category}"></div>
 										<select class="form-select category" th:field="*{category}">
 										<option value="">選択してください</option>
-										<option th:each="category : ${categors}" th:value="${category.id}" th:text="${category.name}">Category</option>
+										<option th:each="category : ${categors}" th:value="${category.id}" th:text="${category.name}"></option>
                                          </select>
 									</div>
 								</div>

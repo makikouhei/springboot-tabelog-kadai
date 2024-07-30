@@ -59,10 +59,19 @@
 											<div class="col-md-8">
 												<div class="card-body">
 													<h3 class="card-title mb-3" th:text="${restaurant.getName()}"></h3>
-													<h4 th:text="${restaurant.getCategory.getName()}"></h4>
 
 													<hr class="mb-3">
-
+													
+													<h4 th:text="${restaurant.getCategory.getName()}"></h4>
+													
+													<p>
+                                                        <span th:if="${averageRatings[restaurant.id] != null}">
+                                                            レビュー<span th:text="${#numbers.formatDecimal(averageRatings[restaurant.id], 1, 1)}"></span>点
+                                                            (<span th:text="${reviewCounts[restaurant.id]}">レビュー件数</span>件)
+                                                        </span>
+                                                        <span th:if="${averageRatings[restaurant.id] == null}">レビューはまだありません</span>
+                                                    </p>
+                                                    
 													<p class="card-text mb-2">
 														<span
 															th:text="'営業時間: ' + ${restaurant.getOpeningTime()} + '～' + ${restaurant.getClosingTime()}"></span>

@@ -1,6 +1,8 @@
 package com.example.nagoyamesi.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,19 +24,35 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-    public String index(Model model) {
-		Double averageRating = reviewService.getAverageRating();
-		Long reviewCount = reviewService.getReviewCount();
+	public String index(Model model) {
+		List<Restaurant> newRestaurantList = restaurantRepository.findTop6ByOrderByCreatedAtDesc();
+        List<Restaurant> topRatedRestaurantList = reviewService.getTop6RestaurantsByRating();
         
-        if (reviewCount == 0) {
-            averageRating = null;
+        Map<Integer, Double> averageRatings = new HashMap<>();
+        Map<Integer, Long> reviewCounts = new HashMap<>();
+
+        for (Restaurant restaurant : newRestaurantList) {
+            Double averageRating = reviewService.getAverageRatingByRestaurant(restaurant);
+            Long reviewCount = reviewService.getReviewCountByRestaurant(restaurant);
+
+            averageRatings.put(restaurant.getId(), averageRating);
+            reviewCounts.put(restaurant.getId(), reviewCount);
         }
         
-        
-		List<Restaurant>  restaurantList = restaurantRepository.findTop6ByOrderByCreatedAtDesc();
-		model.addAttribute("averageRating", averageRating);
-        model.addAttribute("reviewCount", reviewCount);
-        model.addAttribute("restaurantList", restaurantList);        
+        for (Restaurant restaurant : topRatedRestaurantList) {
+            Double averageRating = reviewService.getAverageRatingByRestaurant(restaurant);
+            Long reviewCount = reviewService.getReviewCountByRestaurant(restaurant);
+            
+            averageRatings.put(restaurant.getId(), averageRating);
+            reviewCounts.put(restaurant.getId(), reviewCount);
+        }
+
+        model.addAttribute("averageRatings", averageRatings);
+        model.addAttribute("reviewCounts", reviewCounts);
+        model.addAttribute("restaurantList", newRestaurantList); // 新規掲載店舗
+        model.addAttribute("topRatedRestaurants", topRatedRestaurantList); // 評価の高い店舗
         return "index";
-    }   
+    }
+	
+	 
 }
