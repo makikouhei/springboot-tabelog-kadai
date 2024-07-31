@@ -53,7 +53,7 @@
 													class="card-img-top nagoyamesi-horizontal-card-image" alt="店舗画像">
 												<img th:unless="${restaurant.getImageName()}"
 													th:src="@{/images/noImage.png}"
-													class="card-img-top nagoyameshi-horizontal-card-image"
+													class="card-img-top nagoyamesi-horizontal-card-image"
 													alt="NO IMAGE">
 											</div>
 											<div class="col-md-8">
@@ -106,7 +106,7 @@
 									<li th:each="i : ${#numbers.sequence(0, restaurantPage.getTotalPages() - 1)}"
 										class="page-item">
 										<span th:if="${i == restaurantPage.getNumber()}"
-											class="page-link active nagoyameshi-active" th:text="${i + 1}"></span>
+											class="page-link active nagoyamesi-active" th:text="${i + 1}"></span>
 										<a th:unless="${i == restaurantPage.getNumber()}"
 											th:href="@{/restaurants(page = ${i}, keyword = ${keyword}, categoryType = ${categoryType}, highestPrice = ${highestPrice})}"
 											class="page-link nagoyamesi-page-link" th:text="${i + 1}"></a>

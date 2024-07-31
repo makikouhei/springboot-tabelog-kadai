@@ -35,7 +35,7 @@
                             </div>
                             
                             <div class="form-group row mb-3">
-                                <label for="fromReservationTime" class="col-form-label text-md-left fw-bold">予約時間</label>
+                                <label for="fromReservationTime" class="col-form-label text-md-left fw-bold">予約時間</label><p>(予約は営業終了の1時間半までしか出来ません)</p>
                                 <div th:if="${#fields.hasErrors('reservationTime')}" class="text-danger small mb-2" th:errors="*{reservationTime}"></div>
                                 <select class="form-control" th:field="*{reservationTime}">
                                     <option th:each="time : ${times}" th:value="${time}" th:text="${time}"></option>

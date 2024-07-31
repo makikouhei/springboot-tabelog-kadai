@@ -95,21 +95,21 @@
 										<span th:if="${restaurantPage.isFirst()}" class="page-link disabled">前</span>
 										<a th:unless="${restaurantPage.isFirst()}"
 											th:href="@{/admin/restaurants(page = ${restaurantPage.getNumber() - 1}, keyword = ${keyword})}"
-											class="page-link nagoyameshi-page-link">前</a>
+											class="page-link nagoyamesi-page-link">前</a>
 									</li>
 									<li th:each="i : ${#numbers.sequence(0, restaurantPage.getTotalPages() - 1)}"
 										class="page-item">
 										<span th:if="${i == restaurantPage.getNumber()}"
-											class="page-link active nagoyameshi-active" th:text="${i + 1}"></span>
+											class="page-link active nagoyamesi-active" th:text="${i + 1}"></span>
 										<a th:unless="${i == restaurantPage.getNumber()}"
 											th:href="@{/admin/restaurants(page = ${i}, keyword = ${keyword})}"
-											class="page-link nagoyameshi-page-link" th:text="${i + 1}"></a>
+											class="page-link nagoyamesi-page-link" th:text="${i + 1}"></a>
 									</li>
 									<li class="page-item">
 										<span th:if="${restaurantPage.isLast()}" class="page-link disabled">次</span>
 										<a th:unless="${restaurantPage.isLast()}"
 											th:href="@{/admin/restaurants(page = ${restaurantPage.getNumber() + 1}, keyword = ${keyword})}"
-											class="page-link nagoyameshi-page-link">次</a>
+											class="page-link nagoyamesi-page-link">次</a>
 									</li>
 								</ul>
 							</nav>

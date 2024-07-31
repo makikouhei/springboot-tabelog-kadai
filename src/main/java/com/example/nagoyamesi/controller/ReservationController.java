@@ -1,6 +1,5 @@
 package com.example.nagoyamesi.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -51,49 +50,40 @@ public class ReservationController {
     }
     
     @GetMapping("restaurants/{restaurantId}/reservations/register")
-    public String show(@PathVariable( "restaurantId") Integer restaurantId, Model model) {
+    public String register(@PathVariable( "restaurantId") Integer restaurantId, Model model) {
     	Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
-    	List<String> times = new ArrayList<>();
-    	for (int hour = 0; hour < 24; hour++) {
-    	    times.add(String.format("%02d:00", hour));
-    	    times.add(String.format("%02d:30", hour));
-    	}
-    	
-    	model.addAttribute("times", times);
+        List<String> times = restaurant.getAvailableTimes();
+        
+        model.addAttribute("times", times);
         model.addAttribute("restaurant", restaurant);  
-         model.addAttribute("reservationInputForm", new ReservationInputForm());
+        model.addAttribute("reservationInputForm", new ReservationInputForm());
+        model.addAttribute("regularHoliday", restaurant.getRegularHoliday());
+
         
         return "reservations/register";
     }
+
+
     
     @GetMapping("/restaurants/{restaurantId}/reservations/input")
-	public String input(@PathVariable("restaurantId") Integer restaurantId,
-			@ModelAttribute @Validated ReservationInputForm reservationInputForm,
-			BindingResult bindingResult,
-			RedirectAttributes redirectAttributes,
-			Model model) {
-    	
-    	/*String ReservationDate = reservationInputForm.getFromReservationDate();
-        String fromReservationTime = reservationInputForm.getFromReservationTime();
-        Integer numberOfPeople = reservationInputForm.getNumberOfPeople();*/
+    public String input(@PathVariable("restaurantId") Integer restaurantId,
+            @ModelAttribute @Validated ReservationInputForm reservationInputForm,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            Model model) {
         
         if (bindingResult.hasErrors()) {
-        	model.addAttribute("restaurant", restaurantRepository.getReferenceById(restaurantId));
-			model.addAttribute("errorMessage", "予約内容に不備があります。");
-			List<String> times = new ArrayList<>();
-	    	for (int hour = 0; hour < 24; hour++) {
-	    	    times.add(String.format("%02d:00", hour));
-	    	    times.add(String.format("%02d:30", hour));
-	    	}
-	    	
-	    	model.addAttribute("times", times);
-			return "reservations/register";
-		}
+            model.addAttribute("restaurant", restaurantRepository.getReferenceById(restaurantId));
+            model.addAttribute("errorMessage", "予約内容に不備があります。");
+            Restaurant restaurant = restaurantRepository.getReferenceById(restaurantId);
+            List<String> times = restaurant.getAvailableTimes();
+            model.addAttribute("times", times);
+            
+            return "reservations/register";
+        }
         redirectAttributes.addFlashAttribute("reservationInputForm", reservationInputForm);
-
-		return "redirect:/restaurants/{restaurantId}/reservations/confirm";
-
-    
+        
+        return "redirect:/restaurants/{restaurantId}/reservations/confirm";
     }
     
     @GetMapping("/restaurants/{restaurantId}/reservations/confirm")
@@ -126,12 +116,12 @@ public class ReservationController {
         return "redirect:/reservations?reserved";
     }
     
-    @PostMapping("/{reservationId}/cancel")
+    @PostMapping("/reservations/{reservationId}/cancel")
     public String cancel(@PathVariable("reservationId") Integer reservationId, RedirectAttributes redirectAttributes) {        
     	reservationRepository.deleteById(reservationId);
                 
         redirectAttributes.addFlashAttribute("successMessage", "予約をキャンセルしました。");
         
-        return "redirect:/reservations/index";
+        return "redirect:/reservations";
     }   
 }
