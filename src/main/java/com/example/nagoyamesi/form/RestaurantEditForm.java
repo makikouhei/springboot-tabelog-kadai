@@ -34,7 +34,6 @@ public class RestaurantEditForm {
     @NotBlank(message = "営業終了時間を入力してください。")
     private String closingTime;
 
-    @NotBlank(message = "定休日を入力してください。")
     private String regularHoliday;
 
     @NotNull(message = "最低料金を入力してください。")

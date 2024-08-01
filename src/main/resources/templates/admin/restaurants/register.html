@@ -91,19 +91,38 @@
 								    </div>
 								</div>
 								
-								
 								<div class="form-group row mb-3">
 								    <div class="col-md-4">
 								        <label for="regularHoliday" class="col-form-label text-md-left fw-bold">定休日</label>
 								    </div>
 								    <div class="col-md-8">
 								        <div th:if="${#fields.hasErrors('regularHoliday')}" class="text-danger small mb-2" th:errors="*{regularHoliday}"></div>
-								        <input type="text" class="form-control" th:field="*{regularHoliday}" placeholder="毎週日曜">
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="日曜日"> 日曜日
+								        </div>
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="月曜日"> 月曜日
+								        </div>
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="火曜日"> 火曜日
+								        </div>
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="水曜日"> 水曜日
+								        </div>
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="木曜日"> 木曜日
+								        </div>
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="金曜日"> 金曜日
+								        </div>
+								        <div>
+								            <input type="checkbox" th:field="*{regularHoliday}" value="土曜日"> 土曜日
+								        </div>
+								        <p>選択無しの場合は年中無休になります。</p>
+								       
 								    </div>
 								</div>
 	
-								
-							
 								<div class="form-group row mb-3">
 								    <div class="col-md-4">
 								        <label for="lowestPrice" class="col-form-label text-md-left fw-bold">最低料金</label>
@@ -185,5 +204,6 @@
 		
 		<div th:replace="~{fragment :: scripts}"></div>
 		<script th:src="@{/js/preview.js}"></script>
+		
 	</body>
 </html>

@@ -82,7 +82,8 @@
 									</div>
 									
 									<div class="col">
-										<span th:text="${restaurant.getRegularHoliday()}"></span>
+										<span th:if="${restaurant.getRegularHoliday() != null && restaurant.getRegularHoliday() != ''}" th:text="${restaurant.getRegularHoliday()}"></span>
+                                        <span th:unless="${restaurant.getRegularHoliday() != null && restaurant.getRegularHoliday() != ''}">年中無休</span>
 									</div>
 								</div>
 								

@@ -31,7 +31,7 @@
                             <div class="form-group row mb-3">
                                 <label for="fromReservationDate" class="col-form-label text-md-left fw-bold">予約日</label>
                                 <div th:if="${#fields.hasErrors('reservationDate')}" class="text-danger small mb-2" th:errors="*{reservationDate}"></div>
-                                <input id="fromReservationDate" class="form-control" th:field="*{reservationDate}">
+                                <input id="fromReservationDate" class="form-control" th:field="*{reservationDate}" th:data-regular-holiday="${restaurant.regularHoliday}">
                             </div>
                             
                             <div class="form-group row mb-3">

@@ -29,7 +29,7 @@ public class RestaurantRegisterForm {
     @NotBlank(message = "営業終了時間を選択してください。")
     private String closingTime;
 
-    @NotBlank(message = "定休日を選択してください。")
+    
     private String regularHoliday;
 
     @NotNull(message = "最低料金を選択してください。")
