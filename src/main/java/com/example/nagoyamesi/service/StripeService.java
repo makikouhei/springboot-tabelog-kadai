@@ -3,6 +3,7 @@ package com.example.nagoyamesi.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.example.nagoyamesi.entity.User;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
@@ -16,7 +17,8 @@ public class StripeService {
     @Value("${stripe.api-key}")
     private String stripeApiKey;
 
-    public String createStripeSession(HttpServletRequest httpServletRequest, String userId) {
+    public String createStripeSession(HttpServletRequest httpServletRequest, User user) {
+    	String userId = (user != null && user.getId() != null) ? String.valueOf(user.getId()) : "null";
         Stripe.apiKey = stripeApiKey;
         String requestUrl = new String(httpServletRequest.getRequestURL());
 
@@ -26,7 +28,7 @@ public class StripeService {
                 .setCancelUrl(requestUrl.replaceAll("/", "") + "/login/reserved/cancel")
                 .addLineItem(
                     SessionCreateParams.LineItem.builder()
-                        .setPrice("price")  
+                        .setPrice("price_1PdpGA2KNitvjaTCJlAqfUDe")  
                         .setQuantity(1L)
                         .build()
                 )
