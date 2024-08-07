@@ -40,7 +40,12 @@ public class RestaurantService {
 		restaurant.setName(restaurantRegisterForm.getName()); //店舗名
 		restaurant.setOpeningTime(restaurantRegisterForm.getOpeningTime()); //営業開始時
 		restaurant.setClosingTime(restaurantRegisterForm.getClosingTime()); //営業終了時間
-		restaurant.setRegularHoliday(restaurantRegisterForm.getRegularHoliday()); //定休日
+		// 定休日が設定されていない場合は"年中無休"
+        if (restaurantRegisterForm.getRegularHoliday() == null || restaurantRegisterForm.getRegularHoliday().isEmpty()) {
+            restaurant.setRegularHoliday("年中無休");
+        } else {
+            restaurant.setRegularHoliday(String.join(",", restaurantRegisterForm.getRegularHoliday()));
+        }
 		restaurant.setLowestPrice(restaurantRegisterForm.getLowestPrice()); //最低料金
 		restaurant.setHighestPrice(restaurantRegisterForm.getHighestPrice());  //最大料金
 		restaurant.setDescription(restaurantRegisterForm.getDescription()); //店舗説明
@@ -69,7 +74,12 @@ public class RestaurantService {
 		restaurant.setName(restaurantEditForm.getName()); //店舗名
 		restaurant.setOpeningTime(restaurantEditForm.getOpeningTime()); //営業開始時
 		restaurant.setClosingTime(restaurantEditForm.getClosingTime()); //営業終了時間
-		restaurant.setRegularHoliday(restaurantEditForm.getRegularHoliday()); //定休日
+		// 定休日が設定されていない場合は"年中無休"
+        if (restaurantEditForm.getRegularHoliday() == null || restaurantEditForm.getRegularHoliday().isEmpty()) {
+            restaurant.setRegularHoliday("年中無休");
+        } else {
+            restaurant.setRegularHoliday(String.join(",", restaurantEditForm.getRegularHoliday()));
+        }
 		restaurant.setLowestPrice(restaurantEditForm.getLowestPrice()); //最低料金
 		restaurant.setHighestPrice(restaurantEditForm.getHighestPrice());  //最大料金
 		restaurant.setDescription(restaurantEditForm.getDescription()); //店舗説明

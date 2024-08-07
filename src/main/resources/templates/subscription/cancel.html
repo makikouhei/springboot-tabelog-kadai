@@ -5,7 +5,7 @@
 		<div th:replace="~{fragment :: meta}"></div>
 		<div th:replace="~{fragment :: styles}"></div>
 	
-		<title>有料会員登録</title>
+		<title>有料会員解約</title>
 	</head>
 	
 	<body>
@@ -19,21 +19,22 @@
 							<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 								<ol class="breadcrumb mb-0">
 									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
-									<li class="breadcrumb-item active" aria-current="page">有料会員登録</li>
+									<li class="breadcrumb-item active" aria-current="page">有料会員解約</li>
 								</ol>
 							</nav>
 	
-							<h1 class="mb-4 text-center">有料会員登録</h1>
-							<p class="text-center">店舗の予約</p>
-                            <p class="text-center">お気に入り機能</p>
-                            <p class="text-center">レビュー投稿</p>
-                            <p class="text-center">上記機能が月額300円で使用できます。</p>
+							<h1 class="mb-4 text-center">有料会員解約</h1>
+							<p class="text-center">有料会員を解約しても宜しいですか？</p>
+							
+							<div th:if="${successMessage}" class="alert alert-info" role="alert">
+								<span th:text="${successMessage}"></span>
+							</div>
+
 	
-							<form method="post" th:action="@{/subscription/create}">
-	
+							<form method="post" th:action="@{/subscription/delete}">
 								<div class="row justify-content-center mb-4">
 									<div class="col-lg-4">
-	                                	<button id="paymentButton" type="submit" class="btn text-white shadow-sm w-100 nagoyamesi-btn">決済する</button>
+	                                	<button id="paymentButton" type="submit" class="btn text-white shadow-sm w-100 nagoyamesi-btn">解約する</button>
 		                            </div> 
 	                            </div>
 								

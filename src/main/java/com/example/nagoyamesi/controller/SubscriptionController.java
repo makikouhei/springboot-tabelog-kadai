@@ -2,10 +2,10 @@ package com.example.nagoyamesi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.nagoyamesi.entity.User;
 import com.example.nagoyamesi.security.UserDetailsImpl;
@@ -13,7 +13,7 @@ import com.example.nagoyamesi.service.StripeService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@RestController
+@Controller
 @RequestMapping("/subscription")
 public class SubscriptionController {
 

@@ -24,8 +24,8 @@ public class StripeService {
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.SUBSCRIPTION)
-                .setSuccessUrl(requestUrl.replaceAll("/", "") + "/login/reserved/success?session_id={CHECKOUT_SESSION_ID}")
-                .setCancelUrl(requestUrl.replaceAll("/", "") + "/login/reserved/cancel")
+                .setSuccessUrl(requestUrl.replaceAll("/subscription/register", "") + "/login?reserved")
+                .setCancelUrl(requestUrl.replaceAll("/", ""))
                 .addLineItem(
                     SessionCreateParams.LineItem.builder()
                         .setPrice("price_1PdpGA2KNitvjaTCJlAqfUDe")  

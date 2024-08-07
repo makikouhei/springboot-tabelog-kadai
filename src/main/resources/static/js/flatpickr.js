@@ -1,7 +1,9 @@
+// 日付の最大値を設定
 let maxDate = new Date();
 maxDate.setMonth(maxDate.getMonth() + 3);
 
-const regularHoliday = document.getElementById('fromReservationDate').dataset.regularHoliday;
+// データ属性から regularHoliday を取得し、文字列を配列に変換
+const regularHoliday = document.getElementById('fromReservationDate').dataset.regularHoliday.split(',').map(day => day.trim());
 
 // 曜日を変換するためのマッピング
 const dayMap = {
@@ -14,6 +16,10 @@ const dayMap = {
     "土曜日": 6
 };
 
+// 禁止曜日のインデックスをセットとして保持
+const disabledDays = new Set(regularHoliday.map(day => dayMap[day]));
+
+// flatpickrの設定
 flatpickr("#fromReservationDate", {
     locale: "ja",
     minDate: "today",
@@ -21,8 +27,7 @@ flatpickr("#fromReservationDate", {
     dateFormat: "Y-m-d",
     disable: [
         function(date) {
-            // regularHolidayを曜日のインデックスに変換
-            return date.getDay() === dayMap[regularHoliday];
+            return disabledDays.has(date.getDay());
         }
     ]
 });

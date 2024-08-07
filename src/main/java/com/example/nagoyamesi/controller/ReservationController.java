@@ -58,8 +58,6 @@ public class ReservationController {
         model.addAttribute("restaurant", restaurant);  
         model.addAttribute("reservationInputForm", new ReservationInputForm());
         model.addAttribute("regularHoliday", restaurant.getRegularHoliday());
-        model.addAttribute("regularHoliday", restaurant.getRegularHoliday());
-
         
         return "reservations/register";
     }
