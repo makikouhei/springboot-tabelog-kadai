@@ -3,6 +3,7 @@ package com.example.nagoyamesi.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -89,16 +90,28 @@ public class UserService {
      @Transactional
      public void updateRole(Map<String, String> paymentIntentObject) {
          String userId = paymentIntentObject.get("userId");
+         System.out.println("Updating role for user ID: " + userId);  // ログ追加
 
-         User user = userRepository.findById(Long.parseLong(userId))
-                 .orElseThrow(() -> new RuntimeException("指定されたユーザーが見つかりません。"));
+         Optional<User> userOptional = userRepository.findById(Long.parseLong(userId));
+         
+         if (!userOptional.isPresent()) {
+             throw new RuntimeException("指定されたユーザーが見つかりません。");
+         }
+
+         User user = userOptional.get();
+         System.out.println("User found: " + user.getEmail());  // ログ追加
 
          String roleName = paymentIntentObject.get("roleName");
+         System.out.println("Role name to be updated: " + roleName);  // ログ追加
 
          Role role = roleRepository.findByName(roleName);
-         user.setRole(role);
+         if (role == null) {
+             throw new IllegalArgumentException("Role not found: " + roleName);
+         }
 
+         user.setRole(role);
          userRepository.save(user);
+         System.out.println("Role updated successfully.");  // ログ追加
 
          refreshAuthenticationByRole(roleName);
      }
@@ -111,6 +124,7 @@ public class UserService {
          Authentication newAuth = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), authorities);
 
          SecurityContextHolder.getContext().setAuthentication(newAuth);
-     }     
+     }
+    
 
 }
