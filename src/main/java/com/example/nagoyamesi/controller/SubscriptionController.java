@@ -28,6 +28,9 @@ public class SubscriptionController {
 	    return "subscription/register";
 	}
 
-	
+	@GetMapping("/cancel")
+    public String cancel() {
+        return "subscription/cancel";
+    }
 
 }

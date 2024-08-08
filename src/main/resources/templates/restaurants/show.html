@@ -45,7 +45,11 @@
 														
 							<ul calss="nav nav-tabs mb-3">
 								<li class="nav-item">
-									<a class="btn text-white shadow-sm w-10 nagoyamesi-btn" th:href="@{/restaurants/__${restaurant.getId()}__/reservations/register}">予約する</a>
+									
+                                    <a class="btn text-white shadow-sm w-10 nagoyamesi-btn" th:href="@{/restaurants/__${restaurant.getId()}__/reservations/register}" th:if="${#authorization.expression('hasRole(''ROLE_PREMIUM'')')}">予約する</a>
+                                    
+                                    <a class="btn text-white shadow-sm w-10 nagoyamesi-btn" th:href="@{/subscription/register}" th:unless="${#authorization.expression('hasRole(''ROLE_PREMIUM'')')}">予約する</a>
+
 								</li>
 							</ul>
 							
